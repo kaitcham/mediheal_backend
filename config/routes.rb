@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  namespace :api do
+    namespace :v1 do
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+      resources :users, only: [:create]           #handle signup
+      post '/login', to: "auth#login"             #handles login for existing users
+      get '/auto_login', to: 'auth#auto_login'    #handles auto login when user revisit the app
+
+    end
+  end
 end
